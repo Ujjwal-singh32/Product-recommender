@@ -1,10 +1,15 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from sentence_transformers import SentenceTransformer, util
 import torch
 import pandas as pd
 import math
 import os
+
+os.environ["TRANSFORMERS_CACHE"] = "/tmp/.cache"
+os.environ["HF_HOME"] = "/tmp/.cache"
+os.makedirs("/tmp/.cache", exist_ok=True)
+from sentence_transformers import SentenceTransformer, util
+
 app = Flask(__name__)
 CORS(app)
 
@@ -15,7 +20,7 @@ PAGE2_ECO_RATIO = 0.4
 
 # Load model and data
 print("🔄 Loading model and data...")
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("my_local_model")
 df = pd.read_csv("products_clean_updated1.csv")
 product_embeddings = torch.load("embeddings_updated1.pt")
 print("✅ Model and embeddings loaded.")
