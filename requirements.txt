@@ -1,6 +1,8 @@
-flask
+Flask
 flask-cors
+sentence-transformers
+torch
 pandas
 numpy
-torch
-sentence-transformers
+scikit-learn
+gunicorn
