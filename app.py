@@ -4,7 +4,7 @@ from sentence_transformers import SentenceTransformer, util
 import torch
 import pandas as pd
 import math
-
+import os
 app = Flask(__name__)
 CORS(app)
 
@@ -134,4 +134,6 @@ def search_green_products():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+
+    port = int(os.environ.get("PORT", 5000))  # Use Render-assigned port if available
+    app.run(host="0.0.0.0", port=port, debug=True)
